@@ -1,0 +1,10 @@
+
+The 404 Not Found errors for `/` and `/favicon.ico` are expected. The `fastmcp` server is not a traditional web server designed to serve web pages. It's an API server that exposes specific "tools" for consumption by Large Language Models (LLMs) or other client applications.
+
+To interact with the tools you've exposed, you need to use a client. I've created an example client file `fastmcp_client_example.py` in your project root.
+
+You can run this example client to see how to call the tools:
+```bash
+python fastmcp_client_example.py
+```
+This script will connect to your running `fastmcp` server and call the `user_management_greet` and `user_management_get_user` tools, printing their results.

@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+pydantic
+alembic
+python-jose[cryptography]
+passlib[bcrypt]
+reportlab
+scikit-learn
+pandas
+pytesseract
+python-multipart
+Pillow
+python-dotenv
+fastmcp

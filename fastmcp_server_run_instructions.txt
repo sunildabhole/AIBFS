@@ -1,0 +1,9 @@
+The server is still starting on port 8001 instead of 8002. This might be due to `fastmcp`'s default behavior or an internal override.
+
+Please try running the `fastmcp` server using the `fastmcp` command-line tool, explicitly specifying the port:
+
+```bash
+fastmcp run mcp_server.py:mcp --transport http --port 8002
+```
+
+Remember, the `404 Not Found` errors for `/` and `/favicon.ico` are expected for the `fastmcp` server, as it's not a traditional web server. You should interact with it using the `fastmcp_client_example.py` script.

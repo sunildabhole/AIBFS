@@ -1,0 +1,57 @@
+services:
+  postgres:
+    image: postgres:13
+    container_name: aibfs-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Sunil@2004
+      POSTGRES_DB: aibfs
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: aibfs-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+
+  redis:
+    image: redis:7
+    container_name: aibfs-redis
+    ports:
+      - "6379:6379"
+
+  mcp:
+    build: .
+    container_name: aibfs-mcp
+    command: python mcp_server.py
+    volumes:
+      - .:/app
+    ports:
+      - "8002:8002"
+    depends_on:
+      - postgres
+      - redis
+
+  web:
+    build: .
+    container_name: aibfs-web
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+      - mcp
+    environment:
+      DATABASE_URL: postgresql://postgres:Sunil@2004@postgres:5432/aibfs
+
+volumes:
+  postgres_data: {}
