@@ -41,7 +41,7 @@ services:
   web:
     build: .
     container_name: aibfs-web
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8002 --reload
     volumes:
       - .:/app
     ports:
@@ -51,7 +51,7 @@ services:
       - redis
       - mcp
     environment:
-      DATABASE_URL: postgresql://postgres:Sunil@2004@postgres:5432/aibfs
+      DATABASE_URL: DATABASE_URL
 
 volumes:
   postgres_data: {}
